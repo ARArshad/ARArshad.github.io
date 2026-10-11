@@ -119,6 +119,18 @@
     });
   }
 
+  // Keep the current role's length up to date (counted like LinkedIn: start month included).
+  document.querySelectorAll('.job__duration[data-start]').forEach(function (el) {
+    var parts = el.getAttribute('data-start').split('-');
+    var now = new Date();
+    var months = (now.getFullYear() - Number(parts[0])) * 12 + (now.getMonth() + 1 - Number(parts[1])) + 1;
+    if (months < 1) return;
+    var y = Math.floor(months / 12), m = months % 12, out = [];
+    if (y) out.push(y + (y === 1 ? ' year' : ' years'));
+    if (m) out.push(m + (m === 1 ? ' month' : ' months'));
+    el.textContent = out.join(' ');
+  });
+
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 })();
