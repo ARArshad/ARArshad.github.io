@@ -47,7 +47,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
   <script>
     try {
       var saved = localStorage.getItem('theme');
@@ -416,6 +416,7 @@
               <div class="browser__bar" aria-hidden="true"><span></span><span></span><span></span></div>
               <img src="assets/projects/cv-studio.jpg" alt="CV Studio editor showing a CV being edited directly on the page, with the tools panel on the left" width="1440" height="900" loading="lazy">
             </div>
+            <span class="live-badge"><span class="dot" aria-hidden="true"></span> Live demo</span>
           </div>
           <div class="project__body">
             <p class="project__type">Product · Web app</p>
@@ -434,12 +435,16 @@
             <ul class="tags" aria-label="Technologies">
               <li>Next.js</li><li>React</li><li>TypeScript</li><li>Tailwind CSS</li><li>Zustand</li><li>Playwright</li>
             </ul>
+            <div class="project__actions">
+              <a class="btn btn--primary btn--small" href="/cv-studio/" target="_blank" rel="noopener">Try it live <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7m0 0H9m8 0v8"/></svg></a>
+            </div>
           </div>
         </article>
 
         <div class="projects">
           <article class="project card reveal">
             <div class="project__banner project__banner--fruit">
+              <span class="live-badge"><span class="dot" aria-hidden="true"></span> Live demo</span>
               <div class="fruit-demo">
                 <img src="assets/projects/fruitvision.jpg" alt="A photo of a red apple uploaded to FruitVision" width="412" height="480" loading="lazy">
                 <span class="fruit-demo__result mono"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Prediction: Apple</span>
@@ -450,8 +455,9 @@
               <h3>FruitVision</h3>
               <p>
                 Upload a photo and get back the fruit and a confidence score, across 16 fruits. The
-                convolutional network, training loop, image decoders and web server are all written from
-                scratch on the Python standard library, so it runs with zero installation.
+                convolutional network, training loop and image decoders are written from scratch on the
+                Python standard library, and the trained model is ported to JavaScript so it runs right in
+                your browser.
               </p>
               <ul class="project__facts">
                 <li><strong>91.6%</strong><span>test accuracy</span></li>
@@ -459,12 +465,12 @@
                 <li><strong>0</strong><span>dependencies</span></li>
               </ul>
               <ul class="tags" aria-label="Technologies">
-                <li>Python</li><li>CNN</li><li>Computer vision</li><li>REST API</li>
+                <li>Python</li><li>JavaScript</li><li>CNN</li><li>Computer vision</li>
               </ul>
-              <a class="project__link" href="https://github.com/ARArshad/fruit-vision" target="_blank" rel="noopener">
-                View on GitHub
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7m0 0H9m8 0v8"/></svg>
-              </a>
+              <div class="project__actions">
+                <a class="btn btn--primary btn--small" href="/fruit-vision/" target="_blank" rel="noopener">Try it live <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7m0 0H9m8 0v8"/></svg></a>
+                <a class="project__link" href="https://github.com/ARArshad/fruit-vision" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7m0 0H9m8 0v8"/></svg></a>
+              </div>
             </div>
           </article>
 
