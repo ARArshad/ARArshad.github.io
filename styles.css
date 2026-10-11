@@ -454,6 +454,13 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
   background: #fff; color: #166534; font-weight: 600; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.5);
 }
 .fruit-demo__result svg { width: 16px; height: 16px; stroke-width: 2.6; }
+.project__banner--shot { padding: 24px 26px 0; justify-content: flex-start; }
+.project__banner--shot::before { opacity: 0.18; }
+.browser--mini { position: relative; border-radius: 10px 10px 0 0; border-bottom: 0; box-shadow: 0 -10px 40px -10px rgba(0, 0, 0, 0.45); overflow: hidden; }
+.browser--mini .browser__bar { padding: 7px 10px; }
+.browser--mini .browser__bar span { width: 8px; height: 8px; }
+.browser--mini img { width: 100%; height: auto; display: block; }
+.project:hover .browser--mini { transform: translateY(-3px); }
 .project__banner--glass { background: linear-gradient(135deg, #0369a1, #0891b2 55%, #0d9488); }
 .project__banner--getin { background: linear-gradient(135deg, #0f766e, #2563eb 60%, #4f46e5); }
 

@@ -47,7 +47,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
   <script>
     try {
       var saved = localStorage.getItem('theme');
@@ -467,9 +467,11 @@
           </article>
 
           <article class="project card reveal">
-            <div class="project__banner project__banner--glass" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M3 13l2-5a2 2 0 0 1 1.9-1.3h10.2A2 2 0 0 1 19 8l2 5v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H6v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M3 13h18M7 15.5h.01M17 15.5h.01"/></svg>
-              <span class="mono">laravel · dvla api · caps api</span>
+            <div class="project__banner project__banner--glass project__banner--shot">
+              <div class="browser browser--mini">
+                <div class="browser__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+                <img src="assets/projects/glass-assist.jpg" alt="Glass Assist dashboard with booking actions, vehicle registration lookup and glass supplier shortcuts" width="1600" height="617" loading="lazy">
+              </div>
             </div>
             <div class="project__body">
               <p class="project__type">Client work · Laravel</p>
