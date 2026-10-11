@@ -97,6 +97,7 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 ::selection { background: var(--accent); color: #fff; }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+[tabindex="-1"]:focus { outline: none; }
 
 .container { width: 100%; max-width: 1600px; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 640px) { .container { padding: 0 24px; } }

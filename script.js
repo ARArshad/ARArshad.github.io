@@ -69,6 +69,46 @@
     sections.forEach(function (s) { if (s) spy.observe(s); });
   }
 
+  // In-page links scroll smoothly and keep the address bar clean (no #section).
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function goTo(id, smooth) {
+    var behavior = smooth && !reduceMotion ? 'smooth' : 'auto';
+    if (!id || id === 'top') { window.scrollTo({ top: 0, behavior: behavior }); return; }
+    var target = document.getElementById(id);
+    if (!target) return;
+    target.scrollIntoView({ behavior: behavior, block: 'start' });
+    // Move keyboard and screen reader focus to the section too.
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    goTo(a.getAttribute('href').slice(1), true);
+  });
+  // Arriving from an old #link or /index.html: jump to the section, then tidy the address.
+  function cleanAddress() {
+    if (location.hash || location.search || /\/index\.html$/.test(location.pathname)) {
+      history.replaceState(null, '', location.pathname.replace(/index\.html$/, ''));
+    }
+  }
+  var startId = decodeURIComponent(location.hash.slice(1));
+  if (startId) {
+    goTo(startId, false);
+    // Fonts and images can shift the layout after the first jump; settle once they've loaded.
+    var userScrolled = false;
+    window.addEventListener('wheel', function () { userScrolled = true; }, { once: true, passive: true });
+    window.addEventListener('touchmove', function () { userScrolled = true; }, { once: true, passive: true });
+    window.addEventListener('load', function () { if (!userScrolled) goTo(startId, false); });
+  }
+  cleanAddress();
+  window.addEventListener('hashchange', function () {
+    var id = decodeURIComponent(location.hash.slice(1));
+    if (id) goTo(id, true);
+    cleanAddress();
+  });
+
   // Duplicate the logo strip once so the marquee loops without a gap.
   var techList = document.querySelector('.tech__list');
   if (techList) {

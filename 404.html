@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AliRehman Arshad · Senior Full Stack Developer</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://ararshad.github.io/">
+  <script>
+    // Any address that doesn't exist goes back to the home page.
+    // Simple section addresses like /projects or /contact open that section.
+    (function () {
+      var sections = ['about', 'experience', 'projects', 'skills', 'education', 'contact'];
+      var path = location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+      location.replace(sections.indexOf(path) > -1 ? '/#' + path : '/');
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=/"></noscript>
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #f7f8fc; color: #0f172a; }
+    a { color: #4f5bff; }
+    @media (prefers-color-scheme: dark) { body { background: #0a0e1c; color: #e9edf9; } a { color: #9aa3ff; } }
+  </style>
+</head>
+<body>
+  <p>Taking you to <a href="/">ararshad.github.io</a></p>
+</body>
+</html>
