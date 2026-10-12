@@ -191,10 +191,6 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .btn--primary:hover { box-shadow: 0 14px 30px -10px rgba(79, 91, 255, 0.8); }
 .btn--ghost { background: var(--surface); border-color: var(--border); color: var(--text); }
 .btn--ghost:hover { border-color: var(--accent); }
-.btn--white { background: #fff; color: #1e1b4b; }
-.btn--white:hover { box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.4); }
-.btn--outline-light { color: #fff; border-color: rgba(255, 255, 255, 0.45); }
-.btn--outline-light:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
 
 /* ---------- Hero ---------- */
 .hero { position: relative; overflow: hidden; padding: 48px 0 56px; }
@@ -509,52 +505,244 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 }
 
 /* Education */
-.edu { display: grid; gap: 18px; }
-@media (min-width: 860px) { .edu { grid-template-columns: repeat(3, 1fr); } }
-.edu__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.edu__item h3 { margin-top: 18px; font-size: 1.15rem; }
-.edu__item p:last-child { margin-top: 10px; color: var(--muted); font-size: 0.95rem; }
+.edu-card { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 18px 24px; align-items: center; }
+.edu-card__logo {
+  display: block; width: 80px; height: 80px; border-radius: 20px; overflow: hidden;
+  background: #fff; border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+}
+.edu-card__logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.edu-card h3 { font-size: 1.3rem; }
+.edu-card .job__company a { color: inherit; }
+.edu-card .job__company a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.edu-card__text { margin-top: 8px; color: var(--muted); }
+.edu-card__when { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+@media (max-width: 640px) {
+  .edu-card { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
+  .edu-card__logo { width: 60px; height: 60px; border-radius: 16px; }
+  .edu-card__when { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 10px; }
+}
 
-/* Contact */
+/* Contact: same glass card as the rest of the page, with a soft accent glow */
 .section--contact { padding-top: 24px; }
-.contact {
-  position: relative; overflow: hidden; display: grid; gap: 32px; padding: 32px 22px; border-radius: 28px;
-  color: #fff; background: linear-gradient(135deg, #3b45e6 0%, #6d4fe8 55%, #9b5cf6 100%);
-  box-shadow: 0 40px 80px -30px rgba(79, 91, 255, 0.6);
-}
+.contact { position: relative; overflow: hidden; display: grid; gap: 32px; padding: 32px 22px; border-radius: 28px; }
 .contact::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
   background:
-    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.18), transparent 40%),
-    radial-gradient(circle at 100% 100%, rgba(0, 0, 0, 0.18), transparent 50%);
+    radial-gradient(circle at 0% 0%, var(--accent-soft), transparent 45%),
+    radial-gradient(circle at 100% 100%, rgba(167, 139, 250, 0.16), transparent 50%);
 }
-.contact > * { position: relative; }
+.contact > * { position: relative; z-index: 1; }
 @media (min-width: 960px) { .contact { grid-template-columns: 1.1fr 1fr; padding: 56px; gap: 48px; align-items: center; } }
-.kicker--light { color: rgba(255, 255, 255, 0.85); }
-.kicker--light span { background: rgba(255, 255, 255, 0.16); }
-.contact__text > p:not(.kicker) { margin-top: 14px; color: rgba(255, 255, 255, 0.85); font-size: 1.06rem; max-width: 520px; }
+.contact__text > p:not(.kicker) { margin-top: 14px; color: var(--muted); font-size: 1.06rem; max-width: 520px; }
 .contact__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .contact__links { display: grid; gap: 12px; }
 .contact-link {
   display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 16px;
-  background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.18); font-weight: 600;
-  overflow-wrap: anywhere; transition: background 0.15s, transform 0.15s;
-  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  background: var(--surface-2); border: 1px solid var(--border); font-weight: 600;
+  overflow-wrap: anywhere; transition: border-color 0.15s, transform 0.15s;
 }
-a.contact-link:hover { background: rgba(255, 255, 255, 0.18); transform: translateX(3px); }
+a.contact-link:hover { border-color: var(--accent); transform: translateX(3px); }
+.contact-link small { display: block; color: var(--muted); font-weight: 500; font-size: 0.78rem; }
+.contact-link__icon { flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--accent-soft); color: var(--accent-text); }
 @media (max-width: 480px) {
   .contact { padding: 28px 18px; }
   .contact-link { padding: 12px; gap: 12px; font-size: 0.9rem; overflow-wrap: break-word; }
   .contact-link__icon { width: 38px; height: 38px; }
 }
-.contact-link small { display: block; color: rgba(255, 255, 255, 0.72); font-weight: 500; font-size: 0.78rem; }
-.contact-link__icon { flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: rgba(255, 255, 255, 0.16); }
 
 /* Footer */
 .footer { margin-top: 64px; border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted); font-size: 0.9rem; }
 .footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
 .footer__links { display: flex; flex-wrap: wrap; gap: 20px; }
 .footer a:hover { color: var(--accent-text); }
+
+/* ---------- Liquid glass (iOS 26 style) ----------
+   Like Apple's Liquid Glass, it is used only for the controls that float above
+   the content (the menu bar, round buttons, chips and badges), never for the
+   content itself. The glass is clear rather than frosted: a light tint, a thin
+   bright rim with a specular highlight where the light hits, a soft inner glow,
+   and in Chromium browsers real lens refraction of whatever scrolls underneath
+   (the #lg-refract SVG filter, switched on by script.js). */
+:root {
+  --lg-tint: rgba(244, 247, 253, 0.42);
+  --lg-tint-strong: rgba(255, 255, 255, 0.72);
+  --lg-rim: rgba(255, 255, 255, 1);
+  --lg-rim-soft: rgba(255, 255, 255, 0.55);
+  --lg-glow: rgba(255, 255, 255, 0.55);
+  --lg-shadow: 0 14px 34px -14px rgba(30, 41, 90, 0.34), 0 3px 8px -3px rgba(15, 23, 42, 0.16);
+  --lg-blur: 7px;
+  --lg-tint-bar: rgba(246, 248, 254, 0.6);
+  /* Light mode needs what white glass on a white page lacks: a hairline edge,
+     a little thickness along the bottom, a hint of colour where the light
+     bends, a top-down sheen and extra vibrancy. In dark mode these are all
+     neutral, so the dark glass is unchanged. */
+  --lg-edge: rgba(15, 23, 42, 0.11);
+  --lg-depth: rgba(15, 23, 42, 0.12);
+  --lg-caustic: rgba(99, 102, 241, 0.20);
+  --lg-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.12) 52%, rgba(255, 255, 255, 0.28) 100%);
+  --lg-sat: 210%;
+  --lg-bright: 1.04;
+  --lg-ripple: rgba(99, 102, 241, 0.26);
+  --lg-ripple-soft: rgba(99, 102, 241, 0.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --lg-tint: rgba(28, 34, 60, 0.30);
+    --lg-tint-strong: rgba(28, 34, 60, 0.55);
+    --lg-rim: rgba(255, 255, 255, 0.42);
+    --lg-rim-soft: rgba(255, 255, 255, 0.10);
+    --lg-glow: rgba(255, 255, 255, 0.07);
+    --lg-shadow: 0 12px 34px -10px rgba(0, 0, 0, 0.65), 0 2px 6px -2px rgba(0, 0, 0, 0.4);
+    --lg-tint-bar: rgba(14, 18, 36, 0.74);
+    --lg-edge: transparent;
+    --lg-depth: transparent;
+    --lg-caustic: transparent;
+    --lg-sheen: none;
+    --lg-sat: 185%;
+    --lg-bright: 1;
+    --lg-ripple: rgba(255, 255, 255, 0.30);
+    --lg-ripple-soft: rgba(255, 255, 255, 0.08);
+  }
+}
+:root[data-theme="dark"] {
+  --lg-tint: rgba(28, 34, 60, 0.30);
+  --lg-tint-strong: rgba(28, 34, 60, 0.55);
+  --lg-rim: rgba(255, 255, 255, 0.42);
+  --lg-rim-soft: rgba(255, 255, 255, 0.10);
+  --lg-glow: rgba(255, 255, 255, 0.07);
+  --lg-shadow: 0 12px 34px -10px rgba(0, 0, 0, 0.65), 0 2px 6px -2px rgba(0, 0, 0, 0.4);
+  --lg-tint-bar: rgba(14, 18, 36, 0.74);
+  --lg-edge: transparent;
+  --lg-depth: transparent;
+  --lg-caustic: transparent;
+  --lg-sheen: none;
+  --lg-sat: 185%;
+  --lg-bright: 1;
+  --lg-ripple: rgba(255, 255, 255, 0.30);
+  --lg-ripple-soft: rgba(255, 255, 255, 0.08);
+}
+
+.nav__inner, .mobile-menu, .icon-btn, .eyebrow, .socials a, .hero .btn--ghost { position: relative; }
+.nav__inner, .mobile-menu, .icon-btn, .eyebrow, .socials a, .floating-card, .live-badge, .to-top, .hero .btn--ghost {
+  isolation: isolate;
+  background: var(--lg-tint);
+  background-image: var(--lg-sheen);
+  border: 0;
+  box-shadow:
+    0 0 0 0.5px var(--lg-edge),
+    inset 1.5px 1.5px 0 -0.5px var(--lg-rim),
+    inset -1px -1px 0 -0.5px var(--lg-rim-soft),
+    inset 0 -1.5px 1px -0.5px var(--lg-depth),
+    inset 0 -10px 16px -12px var(--lg-caustic),
+    inset 0 0 14px -4px var(--lg-glow),
+    var(--lg-shadow);
+  -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-sat)) brightness(var(--lg-bright));
+  backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-sat)) brightness(var(--lg-bright));
+}
+/* The specular highlight: light catching the top edge of the glass */
+.nav__inner::after, .mobile-menu::after, .icon-btn::after, .eyebrow::after, .socials a::after,
+.floating-card::after, .live-badge::after, .to-top::after, .hero .btn--ghost::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1;
+  background:
+    radial-gradient(120% 70% at 18% -10%, rgba(255, 255, 255, 0.42), transparent 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10), transparent 45%);
+  opacity: 0.9;
+}
+:root[data-theme="dark"] .nav__inner::after, :root[data-theme="dark"] .mobile-menu::after,
+:root[data-theme="dark"] .icon-btn::after, :root[data-theme="dark"] .eyebrow::after,
+:root[data-theme="dark"] .socials a::after, :root[data-theme="dark"] .floating-card::after,
+:root[data-theme="dark"] .live-badge::after, :root[data-theme="dark"] .to-top::after,
+:root[data-theme="dark"] .hero .btn--ghost::after { opacity: 0.35; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .nav__inner::after, :root:not([data-theme="light"]) .mobile-menu::after,
+  :root:not([data-theme="light"]) .icon-btn::after, :root:not([data-theme="light"]) .eyebrow::after,
+  :root:not([data-theme="light"]) .socials a::after, :root:not([data-theme="light"]) .floating-card::after,
+  :root:not([data-theme="light"]) .live-badge::after, :root:not([data-theme="light"]) .to-top::after,
+  :root:not([data-theme="light"]) .hero .btn--ghost::after { opacity: 0.35; }
+}
+
+/* Real refraction where the browser can do it (Chrome, Edge, Opera) */
+.lg-refract .nav__inner, .lg-refract .mobile-menu, .lg-refract .icon-btn, .lg-refract .eyebrow,
+.lg-refract .socials a, .lg-refract .floating-card, .lg-refract .live-badge, .lg-refract .to-top,
+.lg-refract .hero .btn--ghost {
+  -webkit-backdrop-filter: url(#lg-refract) blur(calc(var(--lg-blur) * 0.6)) saturate(var(--lg-sat)) brightness(var(--lg-bright));
+  backdrop-filter: url(#lg-refract) blur(calc(var(--lg-blur) * 0.6)) saturate(var(--lg-sat)) brightness(var(--lg-bright));
+}
+
+/* The menu bar floats as a capsule, like the iOS 26 tab bar */
+.nav, .nav.is-scrolled { position: sticky; top: 0; background: transparent; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding-top: 12px; }
+.nav .nav__inner {
+  max-width: min(1200px, calc(100% - 24px)); height: 62px; margin: 0 auto;
+  padding: 0 10px 0 12px; border-radius: 24px;
+  background: var(--lg-tint-bar);
+  background-image: var(--lg-sheen);
+}
+.mobile-menu { background: var(--lg-tint-bar); background-image: var(--lg-sheen); }
+.nav__links { background: transparent; border: 0; box-shadow: none; }
+.nav__links a { color: color-mix(in srgb, var(--text) 78%, transparent); }
+.nav__links a.is-active {
+  background: var(--lg-tint-strong);
+  box-shadow: 0 0 0 0.5px var(--lg-edge), inset 1px 1px 0 -0.5px var(--lg-rim), inset -1px -1px 0 -0.5px var(--lg-rim-soft), inset 0 -1px 1px -0.5px var(--lg-depth), 0 2px 8px -2px rgba(15, 23, 42, 0.18);
+}
+.mobile-menu { max-width: calc(100% - 24px); margin: 8px auto 0; border-radius: 22px; border-top: 0; padding: 8px; }
+.mobile-menu a { border-radius: 14px; }
+@media (min-width: 640px) { .nav .nav__inner { padding: 0 10px 0 14px; } }
+
+/* Tab bar: one sliding glass pill (moved by script.js) and a light ripple on tap */
+.nav__inner, .mobile-menu { overflow: hidden; }
+.nav__links.has-indicator { position: relative; }
+.nav__links.has-indicator a { position: relative; z-index: 1; }
+.nav__links.has-indicator a.is-active { background: transparent; box-shadow: none; }
+.nav__indicator {
+  position: absolute; top: 4px; bottom: 4px; left: 0; width: 0; z-index: 0;
+  border-radius: 999px; pointer-events: none; transform-origin: center;
+  background: var(--lg-tint-strong);
+  box-shadow: 0 0 0 0.5px var(--lg-edge), inset 1px 1px 0 -0.5px var(--lg-rim), inset -1px -1px 0 -0.5px var(--lg-rim-soft), inset 0 -1px 1px -0.5px var(--lg-depth), 0 2px 8px -2px rgba(15, 23, 42, 0.18);
+  opacity: 0;
+  transition: opacity 0.25s ease, scale 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease;
+}
+.nav__indicator.is-shown { opacity: 1; }
+.nav__indicator.is-pressed { scale: 1.1; filter: brightness(1.08); }
+.lg-ripple {
+  position: absolute; width: 260px; height: 260px; margin: -130px 0 0 -130px; z-index: 0;
+  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, var(--lg-ripple) 0%, var(--lg-ripple-soft) 38%, transparent 68%);
+  transform: scale(0.08);
+  animation: lg-ripple 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+}
+@keyframes lg-ripple { 60% { opacity: 1; } to { transform: scale(1); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .lg-ripple { display: none; }
+  .nav__indicator { transition: opacity 0.2s ease; }
+  .nav__indicator.is-pressed { scale: none; }
+}
+
+/* Glass reacts to touch the way iOS controls do */
+.icon-btn, .socials a, .to-top, .hero .btn--ghost { transition: transform 0.18s ease, box-shadow 0.18s ease, color 0.15s; }
+.icon-btn:hover, .socials a:hover, .to-top:hover, .hero .btn--ghost:hover { transform: translateY(-1px) scale(1.04); }
+.icon-btn:active, .socials a:active, .to-top:active, .hero .btn--ghost:active { transform: scale(0.95); }
+.live-badge { color: #0f172a; }
+:root[data-theme="dark"] .live-badge { color: #fff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .live-badge { color: #fff; } }
+
+/* Back to top: a floating glass button that appears once you scroll */
+.to-top {
+  position: fixed; right: 20px; bottom: 20px; z-index: 40;
+  display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%;
+  color: var(--text);
+  opacity: 0; transform: translateY(12px) scale(0.9); pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+.to-top.is-visible:hover { transform: translateY(-2px) scale(1.05); }
+.to-top svg { width: 22px; height: 22px; stroke-width: 2.2; }
+@media (max-width: 640px) { .to-top { right: 16px; bottom: 16px; width: 46px; height: 46px; } }
+
+@media (prefers-reduced-transparency: reduce) {
+  .nav__inner, .mobile-menu, .icon-btn, .eyebrow, .socials a, .floating-card, .live-badge, .to-top, .hero .btn--ghost {
+    background: var(--surface); -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+}
 
 /* Reveal on scroll */
 .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -566,7 +754,7 @@ a.contact-link:hover { background: rgba(255, 255, 255, 0.18); transform: transla
   .floating-card, .dot::after { animation: none; }
   .tech__list { animation: none; flex-wrap: wrap; width: auto; justify-content: center; padding: 18px 16px; }
   .tech__list li[aria-hidden="true"] { display: none; }
-  .btn, .mini-card, .contact-link, .project, .project__media img { transition: none; }
+  .btn, .mini-card, .contact-link, .project, .project__media img, .to-top, .icon-btn, .socials a { transition: none; }
 }
 
 @media print {
